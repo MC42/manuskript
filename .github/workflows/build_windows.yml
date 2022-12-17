@@ -40,9 +40,14 @@ jobs:
         python -m pip install --upgrade pip 
         pip install pyqt5==5.15.7 lxml pytest pytest-faulthandler language_tool_python symspellpy pyspellchecker pyenchant
         pip install pyinstaller
+    - name: UPX Download / Install
+      run: |
+        powershell Invoke-WebRequest -Uri "https://github.com/upx/upx/releases/download/v4.0.1/upx-4.0.1-win64.zip";
+        powershell Expand-Archive "./upx-4.0.1-win64.zip" -DestinationPath "./";
+
     - name: pyinstaller build
       run: |
-        pyinstaller ./manuskript.spec
+        pyinstaller ./manuskript.spec --upx-path ./upx-4.0.1-win64/
       env: 
         manuskript_version: ${{ steps.vars.outputs.sha_short }}
     - name: Remove W7 File Issues # https://github.com/olivierkes/manuskript/blob/develop/package/build_for_windows.sh#L85
