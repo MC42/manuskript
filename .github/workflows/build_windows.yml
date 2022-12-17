@@ -47,7 +47,7 @@ jobs:
 
     - name: pyinstaller build
       run: |
-        pyinstaller ./manuskript.spec --upx-path ./upx-4.0.1-win64/
+        pyinstaller ./manuskript.spec --upx-dir=".\upx-4.0.1-win64\"
       env: 
         manuskript_version: ${{ steps.vars.outputs.sha_short }}
     - name: Remove W7 File Issues # https://github.com/olivierkes/manuskript/blob/develop/package/build_for_windows.sh#L85
