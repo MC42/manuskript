@@ -42,7 +42,7 @@ jobs:
         pip install pyinstaller
     - name: UPX Download / Install
       run: |
-        powershell Invoke-WebRequest -Uri "https://github.com/upx/upx/releases/download/v4.0.1/upx-4.0.1-win64.zip";
+        powershell Invoke-WebRequest -Uri "https://github.com/upx/upx/releases/download/v4.0.1/upx-4.0.1-win64.zip" -OutFile ./upx-4.0.1-win64.zip";
         powershell Expand-Archive "./upx-4.0.1-win64.zip" -DestinationPath "./";
 
     - name: pyinstaller build
